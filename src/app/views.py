@@ -1,5 +1,5 @@
-from app import app
+from app import create_app
 
-@app.route('/')
+@create_app.route('/')
 def home():
    return "hello world!"
