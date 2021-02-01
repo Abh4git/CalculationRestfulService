@@ -9,8 +9,16 @@ RUN apt-get update -y && \
 COPY requirements.txt /tmp/
 RUN pip install --requirement /tmp/requirements.txt
 
-COPY . /app
+RUN useradd -ms /bin/bash admin
 
+COPY ./Calculation_Core/* /app/
+COPY ./* /app/
+COPY . /app
+RUN chown -R admin:admin /app
+RUN chmod 755 /app
+RUN chmod 755 /app/Calculation_Core
+USER admin
+ENV export FLASK_ENV=production
 RUN export FLASK_APP=Python.py
 
 # We copy just the requirements.txt first to leverage Docker cache
@@ -19,4 +27,6 @@ WORKDIR /app
 
 EXPOSE 5000
 
-RUN flask run
+#ENTRYPOINT [ "flask" ]
+
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
