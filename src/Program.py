@@ -75,3 +75,5 @@ def execute_calculation(calculation_type_id):
                                                    roiInputsUpdated.NumberOfYears, npvCalcuator.result)
     return calculation_response.toJSON()
 
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
