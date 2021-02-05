@@ -35,15 +35,6 @@ app = create_app()
 def home():
    return "Hello Calculation World!"
 
-# Trying Calculations
-#@app.route('/calculation/<calculation_type_id>')
-#def calculation(calculation_type_id):
- #   factoryinst = CalculationFactory.getInstance()
-  #  npvCalcuator = factoryinst.GetCalculation(CalculationTypeEnum.NPV, roiInputs)
-   # npvCalcuator.Execute()
-    #print("Printing npv calculation value ", npvCalcFact.result)
-    #return str(npvCalcFact.result)
-
 # Based on Calculation Request
 @app.route('/calculation/<calculation_type_id>', methods=['GET','PUT'])
 def execute_calculation(calculation_type_id):
